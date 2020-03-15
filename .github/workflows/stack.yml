@@ -52,6 +52,8 @@ jobs:
         stack test --only-dependencies
 
     - name: Build
+      env:
+        STACK_YAML: stack-${{ matrix.resolver }}.yaml
       run: |
         stack test --fast
         stack install --fast
