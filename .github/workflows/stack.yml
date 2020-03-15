@@ -45,9 +45,10 @@ jobs:
         brew install sdl2 pkg-config sdl2 sdl2_image sdl2_mixer sdl2_ttf
 
     - name: Install dependencies
+      env:
+        STACK_YAML: stack-${{ matrix.resolver }}.yaml
       run: |
         stack config set resolver ${{ matrix.resolver }}
-        export STACK_YAML=stack-${{ matrix.resolver }}.yaml
         stack test --only-dependencies
 
     - name: Build
