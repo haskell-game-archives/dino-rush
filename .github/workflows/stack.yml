@@ -18,9 +18,15 @@ jobs:
       matrix:
         os: [ubuntu-18.04, macos-10.15]
         resolver: ["lts-14", "lts-15", "nightly"]
+        ghc: ["8.8.3"]
+        cabal: ["3.0"]
 
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/setup-haskell@v1
+      with:
+        ghc-version: ${{ matrix.ghc }}
+        cabal-version: ${{ matrix.cabal }}
 
     - name: Display stack version
       run: stack --version
