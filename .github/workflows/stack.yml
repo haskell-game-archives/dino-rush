@@ -18,7 +18,7 @@ jobs:
       matrix:
         os: [ubuntu-18.04, macos-10.15]
         resolver: ["lts-14", "lts-15", "nightly"]
-        ghc: ["8.8.3"]
+        ghc: ["8.8.2"]
         cabal: ["3.0"]
 
     steps:
