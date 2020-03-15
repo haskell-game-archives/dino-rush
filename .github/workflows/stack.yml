@@ -21,13 +21,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: mstksg/setup-stack@v2
 
     - name: Display stack version
       run: stack --version
 
     - name: Cache ~/.stack
-      uses: actions/cache@v1.1.2
+      uses: actions/cache@v1
       with:
         path: ~/.stack
         key: ${{ runner.os }}-${{ matrix.resolver }}-v1-stack
@@ -45,9 +44,12 @@ jobs:
         brew install sdl2 pkg-config sdl2 sdl2_image sdl2_mixer sdl2_ttf
 
     - name: Install dependencies
-      run: stack test --only-dependencies --resolver ${{ matrix.resolver }} --stack-yaml stack-${{ matrix.resolver }}.yaml
+      run: |
+        stack config set resolver ${{ matrix.resolver }}
+        export STACK_YAML=stack-${{ matrix.resolver }}.yaml
+        stack test --only-dependencies
 
     - name: Build
       run: |
-        stack test --fast --resolver ${{ matrix.resolver }} --stack-yaml stack-${{ matrix.resolver }}.yaml
-        stack install --fast --resolver ${{ matrix.resolver }} --stack-yaml stack-${{ matrix.resolver }}.yaml
+        stack test --fast
+        stack install --fast
