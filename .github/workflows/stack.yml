@@ -30,7 +30,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: ~/.stack
-        key: ${{ runner.os }}-${{ matrix.resolver }}-v1-stack
+        key: ${{ runner.os }}-${{ matrix.resolver }}-v2-stack
 
     - name: Install libralies (linux)
       if: runner.os == 'Linux'
