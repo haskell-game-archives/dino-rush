@@ -59,13 +59,12 @@ stepObstacles delta = map
   (\o@ObstacleState{osInfo, osDistance} -> o { osDistance = osDistance - (case osInfo of ObstacleInfo'Bird _ -> delta + 3; _ -> delta) })
 
 removeOutOfBoundObstacles :: [ObstacleState] -> ([ObstacleState], [ObstacleState])
-removeOutOfBoundObstacles os = foldr
+removeOutOfBoundObstacles = foldr
   (\o@ObstacleState{osDistance} (removed, remained) ->
     if inBounds osDistance
       then (o : removed, remained)
       else (removed, o : remained))
   ([], [])
-  os
   where
     inBounds x = x + 32 < 0
 
@@ -89,10 +88,10 @@ iterateObstacles upcomingObstacles speed obstacles = let
   (removed, remained) = removeOutOfBoundObstacles $ stepObstacles (realToFrac speed) obstacles
   newObstacle = if canAddObstacle (lastObstacleDistance remained)
     then let
-      pair = head $ upcomingObstacles
+      pair = head upcomingObstacles
       in Just (snd pair, placeObstacle pair)
     else Nothing
   (upcomingObstacles', obstacles') = case fmap snd newObstacle of
     Nothing -> (upcomingObstacles, remained)
-    Just obstacle -> (tail $ upcomingObstacles, obstacle : remained)
+    Just obstacle -> (tail upcomingObstacles, obstacle : remained)
   in (obstacles', length removed, upcomingObstacles', fmap fst newObstacle)

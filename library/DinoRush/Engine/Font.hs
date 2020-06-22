@@ -17,7 +17,7 @@ numberToInt :: Number -> Int
 numberToInt = fromEnum
 
 toNumber :: Integer -> [Number]
-toNumber i = (if next == 0 then [] else toNumber next) ++ (single (i `mod` 10))
+toNumber i = (if next == 0 then [] else toNumber next) ++ single (i `mod` 10)
   where
     next = i `div` 10
     single 0 = [Number'0]

@@ -21,7 +21,7 @@ clearSurface' :: MonadIO m => SDL.Surface -> m ()
 clearSurface' screen = liftIO $ SDL.surfaceFillRect screen Nothing (V4 0 0 0 0)
 
 drawTexture' :: MonadIO m => SDL.Renderer -> SDL.Texture -> Maybe (SDL.Rectangle CInt) -> Maybe (SDL.Rectangle CInt) -> m ()
-drawTexture' renderer tex maybeClip maybeLoc = SDL.copy renderer tex maybeClip maybeLoc
+drawTexture' = SDL.copy
 
 clearRenderer' :: MonadIO m => SDL.Renderer -> m ()
 clearRenderer' = SDL.clear

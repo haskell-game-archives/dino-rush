@@ -11,6 +11,6 @@ import DinoRush.Engine.Sfx
 
 updateQuake :: (AudioSfx m, MonadState s m, HasCommonVars s) => m ()
 updateQuake = do
-  sq <- stepQuake <$> gets (cvQuake . view commonVars)
-  addSfxs $ if startQuake sq then [Sfx'Quake] else []
+  sq <- gets (stepQuake . cvQuake . view commonVars)
+  addSfxs $ [Sfx'Quake | startQuake sq]
   modify $ commonVars %~ (\cv -> cv{ cvQuake = smash sq })

@@ -31,12 +31,12 @@ stepControl events Input{iSpace,iUp,iDown,iEscape} = Input
   , iUp = next 1 [SDL.KeycodeUp, SDL.KeycodeW] iUp
   , iDown = next 1 [SDL.KeycodeDown, SDL.KeycodeS] iDown
   , iEscape = next 1 [SDL.KeycodeEscape] iEscape
-  , iQuit = elem SDL.QuitEvent events
+  , iQuit = SDL.QuitEvent `elem` events
   }
   where
     next count keycodes keystate
-      | or $ map pressed keycodes = pressedKeyState
-      | or $ map released keycodes = releasedKeyState
+      | any pressed keycodes = pressedKeyState
+      | any released keycodes = releasedKeyState
       | otherwise = maintainKeyState count keystate
-    released keycode = or $ map (keycodeReleased keycode) events
-    pressed keycode = or $ map (keycodePressed keycode) events
+    released keycode = any (keycodeReleased keycode) events
+    pressed keycode = any (keycodePressed keycode) events

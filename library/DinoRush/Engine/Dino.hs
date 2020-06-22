@@ -2,6 +2,7 @@ module DinoRush.Engine.Dino where
 
 import qualified Safe
 import qualified Animate
+import Data.Maybe
 import Data.Text (Text)
 import Linear (V2(..))
 import KeyState
@@ -110,8 +111,8 @@ stepDinoState stepDa ds = case stepDa of
     Step'Sustain _ -> DinoState nextAction height hurt recover
   where
     nextAction
-      | hurt /= Nothing = DinoAction'Hurt
-      | height /= Nothing = DinoAction'Jump
+      | isJust hurt = DinoAction'Hurt
+      | isJust height = DinoAction'Jump
       | otherwise = smash stepDa
     height = case dsHeight ds of
       Just p -> if p < 1 then Just (clamp (p + 0.04) 0 1) else Nothing
@@ -162,7 +163,7 @@ stepZoom zoom dinoAction = case dinoAction of
 
 applyHurt :: Bool -> Step DinoAction -> Maybe Percent -> Step DinoAction
 applyHurt collision stepDa recover
-  | collision && recover == Nothing = case stepDa of
+  | collision && isNothing recover = case stepDa of
       Step'Sustain DinoAction'Hurt -> stepDa
       Step'Sustain da -> Step'Change da DinoAction'Hurt
       Step'Change da _ -> Step'Change da DinoAction'Hurt

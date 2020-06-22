@@ -23,4 +23,7 @@ newtype Score = Score Int
   deriving (Show, Eq, Num, Integral, Real, Ord, Enum)
 
 clamp :: (Fractional a, Ord a) => a -> a -> a -> a
-clamp cur min' max' = if cur > max' then max' else (if cur < min' then min' else cur)
+clamp cur min' max'
+  | cur > max' = max'
+  | cur < min' = min'
+  | otherwise = cur
