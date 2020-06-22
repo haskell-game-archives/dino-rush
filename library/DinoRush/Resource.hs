@@ -65,7 +65,7 @@ loadSurface path alpha = do
   surface <- convertSurface surface0 SDL.RGBA8888
   SDL.freeSurface surface0
   case alpha of
-    Just (r,g,b) -> SDL.surfaceColorKey surface $= (Just $ V4 r g b 0x00)
+    Just (r,g,b) -> SDL.surfaceColorKey surface $= Just (V4 r g b 0x00)
     Nothing -> return ()
   return surface
 
@@ -112,7 +112,7 @@ loadResources renderer = do
   num7 <- drawFont 7
   num8 <- drawFont 8
   num9 <- drawFont 9
-  let numberSprites = \n -> case n of
+  let numberSprites = \case
         Number'0 -> num0
         Number'1 -> num1
         Number'2 -> num2

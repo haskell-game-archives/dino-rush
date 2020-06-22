@@ -35,7 +35,7 @@ enableZoom' = do
 
 moveCamera :: MonadIO m => SDL.Renderer -> Camera -> m ()
 moveCamera renderer Camera{camZoom, camOrigin} = do
-  SDL.rendererScale renderer $= (fmap realToFrac camZoom)
-  let dim = fmap truncate $ screenV2
-  SDL.rendererViewport renderer $= (Just $ SDL.Rectangle (SDL.P $ (fmap truncate $ moveOrigin camOrigin)) dim)
-  SDL.rendererClipRect renderer $= (Just $ SDL.Rectangle (SDL.P $ V2 0 0) dim)
+  SDL.rendererScale renderer $= fmap realToFrac camZoom
+  let dim = fmap truncate screenV2
+  SDL.rendererViewport renderer $= Just (SDL.Rectangle (SDL.P (truncate <$> moveOrigin camOrigin)) dim)
+  SDL.rendererClipRect renderer $= Just (SDL.Rectangle (SDL.P $ V2 0 0) dim)

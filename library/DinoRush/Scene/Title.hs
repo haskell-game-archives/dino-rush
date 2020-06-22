@@ -1,4 +1,3 @@
-{-# LANGUAGE TemplateHaskell #-}
 module DinoRush.Scene.Title where
 
 import qualified Animate

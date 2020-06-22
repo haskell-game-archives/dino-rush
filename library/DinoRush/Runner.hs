@@ -1,4 +1,3 @@
-{-# LANGUAGE TemplateHaskell #-}
 module DinoRush.Runner where
 
 import Control.Lens
@@ -38,7 +37,7 @@ titleTransition = do
 playTransition :: (HasPlayVars a, MonadState a m, Audio m) => m ()
 playTransition = do
   PlayVars{pvUpcomingObstacles} <- gets (view playVars)
-  modify $ playVars .~ (initPlayVars pvUpcomingObstacles)
+  modify $ playVars .~ initPlayVars pvUpcomingObstacles
   playGameMusic
 
 deathTransition :: (Audio m) => m ()

@@ -1,4 +1,3 @@
-{-# LANGUAGE TemplateHaskell #-}
 module DinoRush.Scene.Play where
 
 import qualified Animate
@@ -6,6 +5,7 @@ import Control.Monad (when)
 import Control.Lens hiding (zoom)
 import Control.Monad.State (MonadState(..), modify, gets)
 import Data.Foldable (forM_)
+import Data.Maybe
 import KeyState
 
 import DinoRush.Effect.Audio
@@ -42,7 +42,7 @@ playStep' = do
 updatePlay :: (HasPlayVars s, HasCommonVars s, MonadState s m, Logger m, Clock m, CameraControl m, Renderer m, HasInput m, AudioSfx m, SceneManager m) => m ()
 updatePlay = do
   input <- getInput
-  da <- (stepDinoAction input . pvDinoState) <$> gets (view playVars)
+  da <- gets ((stepDinoAction input . pvDinoState) . view playVars)
   updateSeconds
   updateSpeed da
   updateObstacles
@@ -80,7 +80,7 @@ drawPlay = do
   enableZoom
   where
     drawStocks pv dinoAnimations =
-      flip mapM_ [1..(fromIntegral $ pvStocks pv - 1)] $ \stock -> do
+      forM_ [1..(fromIntegral $ pvStocks pv - 1)] $ \stock -> do
         let idleLoc = Animate.currentLocation dinoAnimations (Animate.initPosition DinoKey'Kick)
         drawDino idleLoc (20 + 48 * (stock - 1), 32)
 
@@ -146,7 +146,7 @@ updateObstacles = do
   rockAnimations <- getRockAnimations
   birdAnimations <- getBirdAnimations
   let (obstacles, removedCount, upcomingObstacles, newObstacleTag) = iterateObstacles pvUpcomingObstacles pvSpeed pvObstacles
-  let pointSfx = if removedCount > 0 then [Sfx'Point] else []
+  let pointSfx = [Sfx'Point | removedCount > 0]
   let obstacleSfx = case newObstacleTag of
         Nothing -> []
         Just o -> case o of
@@ -158,7 +158,7 @@ updateObstacles = do
         ObstacleInfo'Rock pos -> ObstacleInfo'Rock $ Animate.stepPosition rockAnimations pos frameDeltaSeconds
         ObstacleInfo'Bird pos -> ObstacleInfo'Bird $ Animate.stepPosition birdAnimations pos frameDeltaSeconds
   let score = pvScore + fromIntegral removedCount
-  let stockSfx = if addStocks pvScore score then [Sfx'Stock] else []
+  let stockSfx = [Sfx'Stock | addStocks pvScore score]
   addSfxs $ pointSfx ++ obstacleSfx ++ stockSfx
   modifyPlayVars $ \pv -> let
     in pv
@@ -171,7 +171,7 @@ updateObstacles = do
 tryCollision :: (MonadState s m, HasPlayVars s) => Step DinoAction -> m (Bool, Step DinoAction)
 tryCollision da = do
   pv <- gets (view playVars)
-  let collision = detectCollision (pvObstacles pv) (pvDinoState pv) && dsRecover (pvDinoState pv) == Nothing
+  let collision = detectCollision (pvObstacles pv) (pvDinoState pv) && isNothing (dsRecover (pvDinoState pv))
   let da' = applyHurt collision da (dsRecover (pvDinoState pv))
   return (collision, da')
 
@@ -199,4 +199,4 @@ updateHiscore = do
   modify $ commonVars %~ \cv -> cv { cvHiscore = max (cvHiscore cv) score }
 
 getDead :: (MonadState s m, HasPlayVars s) => m Bool
-getDead = (<= 0) <$> gets (pvStocks . view playVars)
+getDead = gets ((<= 0) . pvStocks . view playVars)

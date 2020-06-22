@@ -21,7 +21,7 @@ addSfxs' sfxs = modify $ commonVars %~ (\cv -> cv { cvSfx = sfxs ++ cvSfx cv })
 playSfx' :: (Audio m, HasCommonVars s, MonadState s m) => m ()
 playSfx' = do
   CommonVars{cvSfx} <- gets (view commonVars)
-  forM_ cvSfx $ \sfx -> case sfx of
+  forM_ cvSfx $ \case
     Sfx'Jump -> playJumpSfx
     Sfx'Duck -> playDuckSfx
     Sfx'Point -> playPointSfx
