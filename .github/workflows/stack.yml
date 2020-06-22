@@ -22,7 +22,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: mstksg/setup-haskell@v1.1
+    - uses: actions/setup-haskell@v1.1
       with:
         ghc-version: "8.8.3"
         stack-version: "2.3.1"
