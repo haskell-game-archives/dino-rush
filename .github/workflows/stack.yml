@@ -31,7 +31,9 @@ jobs:
     - name: Cache ~/.stack
       uses: actions/cache@v2
       with:
-        path: ~/.stack
+        path: |
+          ~/.stack
+          !~/.stack/setup-exe-cache/x86_64-osx
         key: ${{ runner.os }}-${{ matrix.resolver }}-${{ matrix.cache-version }}-stack
 
     - name: Install libralies (linux)
