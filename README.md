@@ -3,6 +3,8 @@
 [![cabal](https://github.com/haskell-game-archives/dino-rush/workflows/cabal/badge.svg)](https://github.com/haskell-game-archives/dino-rush/actions?query=workflow%3Acabal)
 [![stack](https://github.com/haskell-game-archives/dino-rush/workflows/stack/badge.svg)](https://github.com/haskell-game-archives/dino-rush/actions?query=workflow%3Astack)
 [![lint](https://github.com/haskell-game-archives/dino-rush/workflows/lint/badge.svg)](https://github.com/haskell-game-archives/dino-rush/actions?query=workflow%3Alint)
+[![format](https://github.com/haskell-game-archives/dino-rush/workflows/format/badge.svg)](https://github.com/haskell-game-archives/dino-rush/actions?query=workflow%3Aformat)
+
 
 ![Game Play](https://raw.githubusercontent.com/jxv/dino-rush/master/propaganda/gameplay.gif)
 
