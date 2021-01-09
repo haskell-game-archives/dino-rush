@@ -34,6 +34,7 @@ jobs:
     - name: Install libralies (mac)
       if: runner.os == 'macOS'
       run: |
+        brew link --overwrite python@3.9
         brew update
         brew install sdl2 pkg-config sdl2_image sdl2_mixer sdl2_ttf
 
