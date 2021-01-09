@@ -33,9 +33,7 @@ jobs:
     
     - name: Install libralies (mac)
       if: runner.os == 'macOS'
-      run: |
-        brew update
-        brew install sdl2 pkg-config sdl2_image sdl2_mixer sdl2_ttf
+      run: brew install sdl2 pkg-config sdl2_image sdl2_mixer sdl2_ttf
 
     # See: https://github.com/actions/cache/issues/445
     - name: Install GNU tar
