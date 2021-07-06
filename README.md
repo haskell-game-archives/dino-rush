@@ -4,6 +4,7 @@
 [![stack](https://github.com/haskell-game-archives/dino-rush/workflows/stack/badge.svg)](https://github.com/haskell-game-archives/dino-rush/actions?query=workflow%3Astack)
 [![lint](https://github.com/haskell-game-archives/dino-rush/workflows/lint/badge.svg)](https://github.com/haskell-game-archives/dino-rush/actions?query=workflow%3Alint)
 [![format](https://github.com/haskell-game-archives/dino-rush/workflows/format/badge.svg)](https://github.com/haskell-game-archives/dino-rush/actions?query=workflow%3Aformat)
+[![dependencies check](https://github.com/haskell-game-archives/dino-rush/actions/workflows/outdated.yml/badge.svg)](https://github.com/haskell-game-archives/dino-rush/actions/workflows/outdated.yml)
 
 
 ![Game Play](https://raw.githubusercontent.com/jxv/dino-rush/master/propaganda/gameplay.gif)
