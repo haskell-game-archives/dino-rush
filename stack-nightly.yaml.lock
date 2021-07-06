@@ -18,9 +18,31 @@ packages:
       sha256: 268aaff44dd811cfcd6a19d3d411c78f58508b4ece545570efad0ce136e13b43
   original:
     hackage: key-state-0.2.0@sha256:db4c798d81323183660753d0ca4a5b9e71206aa901abe5c6169022b48408cce9,1345
+- completed:
+    size: 8689
+    url: https://github.com/haskell-game-archives/sdl2-image/archive/f9dc78083252d2e71d51a6474a94e8b8686a9018.tar.gz
+    name: sdl2-image
+    version: 2.0.1
+    sha256: 05bc987b548d58d598496abecbe3e34aa7eaa3a69b8a3a71e599e7ce77236d60
+    pantry-tree:
+      size: 765
+      sha256: 6bd819592173d8effce4aa088f43d05a7643fcbd9ac8a2bd1d5b4ec2fd6a88d7
+  original:
+    url: https://github.com/haskell-game-archives/sdl2-image/archive/f9dc78083252d2e71d51a6474a94e8b8686a9018.tar.gz
+- completed:
+    size: 20018
+    url: https://github.com/haskell-game-archives/sdl2-mixer/archive/568064ce491ff88ef4d73fded1cb7d1b0e44848a.tar.gz
+    name: sdl2-mixer
+    version: 1.1.1
+    sha256: abb4ada6fc22767905ec9baba12f5979ca0e79869324346214f7681654089272
+    pantry-tree:
+      size: 1057
+      sha256: 42fe8aabba54c77273a0f63ec14d594a5b005b954b3080f2308f20cc03a4c349
+  original:
+    url: https://github.com/haskell-game-archives/sdl2-mixer/archive/568064ce491ff88ef4d73fded1cb7d1b0e44848a.tar.gz
 snapshots:
 - completed:
-    size: 562051
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2021/1/5.yaml
-    sha256: be105362ec57d665ea17fa574ab195c49bb1f9a5bd9016174ef83cd368fba253
-  original: nightly-2021-01-05
+    size: 540164
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2021/7/4.yaml
+    sha256: 195e3e9394de03e724525e210f82e30c4488f7c8a09fc70850d75d8b79332993
+  original: nightly-2021-07-04

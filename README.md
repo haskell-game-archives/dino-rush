@@ -4,10 +4,14 @@
 [![stack](https://github.com/haskell-game-archives/dino-rush/workflows/stack/badge.svg)](https://github.com/haskell-game-archives/dino-rush/actions?query=workflow%3Astack)
 [![lint](https://github.com/haskell-game-archives/dino-rush/workflows/lint/badge.svg)](https://github.com/haskell-game-archives/dino-rush/actions?query=workflow%3Alint)
 [![format](https://github.com/haskell-game-archives/dino-rush/workflows/format/badge.svg)](https://github.com/haskell-game-archives/dino-rush/actions?query=workflow%3Aformat)
+[![dependencies check](https://github.com/haskell-game-archives/dino-rush/actions/workflows/outdated.yml/badge.svg)](https://github.com/haskell-game-archives/dino-rush/actions/workflows/outdated.yml)
 
 
 ![Game Play](https://raw.githubusercontent.com/jxv/dino-rush/master/propaganda/gameplay.gif)
 
+**Blog:** http://jxv.io/blog/2018-02-28-A-Game-in-Haskell.html
+
+**Discussion:** https://www.reddit.com/r/haskell/comments/813yik/a_game_in_haskell_dino_rush/
 
 ## OSX build
 

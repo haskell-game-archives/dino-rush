@@ -1,0 +1,11 @@
+packages: .
+
+source-repository-package
+  type: git
+  location: https://github.com/haskell-game-archives/sdl2-image
+  tag: f9dc78083252d2e71d51a6474a94e8b8686a9018
+
+source-repository-package
+  type: git
+  location: https://github.com/haskell-game-archives/sdl2-mixer
+  tag: 568064ce491ff88ef4d73fded1cb7d1b0e44848a
